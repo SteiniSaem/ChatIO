@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../components/Navbar/Navbar";
 
 const App = () => {
-  return <p>Start working here!</p>;
+  return (
+    <div>
+      <Navbar />
+      <p>Start working here!</p>
+    </div>
+  );
 };
 
 export default App;
