@@ -34,5 +34,10 @@ module.exports = {
       template: "./index.html",
       inject: "body"
     })
-  ]
+  ],
+  devServer: {
+    open: true,
+    compress: true,
+    historyApiFallback: true
+  }
 };

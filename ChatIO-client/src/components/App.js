@@ -32,7 +32,7 @@ class App extends React.Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path="/chat" component={Chat} />
+          <Route exact path="/chat" component={Chat} />
         </Switch>
       </div>
     );
