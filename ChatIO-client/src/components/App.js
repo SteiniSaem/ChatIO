@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Navbar from "../components/Navbar/Navbar";
+import Chat from "../components/Chat/Chat";
 import SocketContext from "../contexts/SocketContext";
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route path="/chat" component={Chat} />
         </Switch>
       </div>
     );
