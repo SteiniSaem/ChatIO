@@ -7,7 +7,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_USER:
-      console.log(action);
       return action.payload;
     default:
       return state;

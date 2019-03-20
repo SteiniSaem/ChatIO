@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addUser } from "../../actions/userActions";
+import SocketContext from "../../contexts/SocketContext";
 
 class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nickName: ""
+      nickName: "",
+      nickExists: false
     };
 
     this.addUser = this.addUser.bind(this);
@@ -19,18 +21,28 @@ class Landing extends React.Component {
   addUser() {
     const { nickName } = this.state;
     const { addUser } = this.props;
+    const { socket } = this.context;
 
-    addUser({ nickName });
+    socket.emit("adduser", nickName, available => {
+      if (available) {
+        addUser({ nickName });
+        this.props.history.push("/chat");
+      } else {
+        this.setState({ nickExists: true });
+      }
+    });
   }
 
   render() {
     const { nickName } = this.props;
+    const { nickExists } = this.state;
 
     return (
       <div className="landing container">
         <div className="landing-title">
           <h1>Enter Your Nickname</h1>
         </div>
+        {nickExists && <span className="error">Username already exists</span>}
         <div className="landing-input">
           <input
             type="text"
@@ -53,6 +65,8 @@ const mapStateToProps = reduxStoreState => {
   console.log(reduxStoreState);
   return {};
 };
+
+Landing.contextType = SocketContext;
 
 export default connect(
   mapStateToProps,

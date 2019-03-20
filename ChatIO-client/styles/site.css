@@ -35,3 +35,8 @@
   font-size: 20px;
   color: purple;
 }
+
+.error {
+  font-size: 20;
+  color: red;
+}
