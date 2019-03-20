@@ -1,14 +1,14 @@
-import { UPDATE_USER } from "../constants";
+import { ADD_USER } from "../constants";
 
 const initialState = {
-  fullName: "",
-  img: ""
+  nickName: "",
+  socket: ""
 };
 
 export default function(state = initialState, action) {
   console.log(action);
   switch (action.type) {
-    case UPDATE_USER:
+    case ADD_USER:
       return action.payload;
     default:
       return state;
