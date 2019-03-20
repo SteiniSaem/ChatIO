@@ -35,3 +35,64 @@
   font-size: 20px;
   color: purple;
 }
+
+.chat {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  margin-top: 50px;
+}
+
+.chat-box {
+  border: solid;
+  border: 20px;
+  width: 600px;
+}
+
+.chat-text {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  margin-bottom: 0px;
+  border-top: solid;
+  border-width: 1px;
+  border-color: gray;
+}
+
+.text-box {
+  display: flex;
+  width: 600px;
+}
+
+.msg-input {
+  width: 530px;
+  height: 40px;
+}
+
+.send-btn {
+  width: 70px;
+  height: 40px;
+}
+
+.room-list,
+.user-list {
+  border: solid;
+  border-color: grey;
+  border-width: 1px;
+  list-style-type: none;
+  align-content: center;
+  padding-left: 0px;
+  height: 500px;
+  margin-bottom: 0px;
+}
+
+.room-list-item:hover,
+.user-list-item:hover {
+  background-color: #e7e7e7;
+  cursor: pointer;
+}
+
+.user-list-item,
+.room-list-item {
+  padding: 20px;
+}
