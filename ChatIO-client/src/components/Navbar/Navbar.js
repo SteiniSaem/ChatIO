@@ -1,13 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ nickName }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src="../../../static/logo.png" className="logo" />
-        <span className="lambo-edition">ChatIO (Lamborghini edition)</span>
+        <Link to="/">
+          <img src="../../../static/logo.png" className="logo" />
+          <span className="lambo-edition">ChatIO (Lamborghini edition)</span>
+        </Link>
       </div>
+
       <span className="navbar-nick">{nickName}</span>
     </nav>
   );
