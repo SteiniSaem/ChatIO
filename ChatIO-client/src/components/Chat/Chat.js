@@ -31,7 +31,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { rooms, currentRoom } = this.props;
+    const { rooms, currentRoom, nickName } = this.props;
 
     console.log("this is rooms");
     console.log(rooms.lobby);
@@ -45,12 +45,20 @@ class Chat extends React.Component {
       chat = <h1>No lobby selected</h1>;
     }
 
-    return (
-      <div className="chat">
-        <Rooms roomList={rooms} />
-        {chat}
-      </div>
-    );
+    let all;
+
+    if (nickName != "") {
+      all = (
+        <div className="chat">
+          <Rooms roomList={rooms} />
+          {chat}
+        </div>
+      );
+    } else {
+      all = <h1>You have to log in matey</h1>;
+    }
+
+    return all;
   }
 }
 
@@ -58,7 +66,8 @@ const mapStateToProps = reduxStoreState => {
   console.log(reduxStoreState);
   return {
     rooms: reduxStoreState.room.rooms,
-    currentRoom: reduxStoreState.room.currentRoom
+    currentRoom: reduxStoreState.room.currentRoom,
+    nickName: reduxStoreState.user.nickName
   };
 };
 
