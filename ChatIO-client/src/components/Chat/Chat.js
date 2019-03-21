@@ -1,6 +1,7 @@
 import React from "react";
 import Rooms from "../Rooms/Rooms";
 import Users from "../Users/Users";
+import ChatWindow from "../ChatWindow/ChatWindow";
 
 import { connect } from "react-redux";
 import { updateRooms } from "../../actions/roomActions";
@@ -30,24 +31,24 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { rooms } = this.props;
+    const { rooms, currentRoom } = this.props;
+
     console.log("this is rooms");
     console.log(rooms.lobby);
+
+    let chat;
+
+    if (currentRoom != null) {
+      let roomName = Object.keys(currentRoom)[0];
+      chat = <ChatWindow room={currentRoom[roomName]} />;
+    } else {
+      chat = <h1>No lobby selected</h1>;
+    }
+
     return (
       <div className="chat">
         <Rooms roomList={rooms} />
-
-        <div className="chat-text">
-          <div className="chat-box">
-            <p>halo</p>
-          </div>
-          <div className="text-box">
-            <input type="text" className="msg-input" />
-            <button className="send-btn sign-in-btn">Send</button>
-          </div>
-        </div>
-
-        <Users />
+        {chat}
       </div>
     );
   }
@@ -56,7 +57,8 @@ class Chat extends React.Component {
 const mapStateToProps = reduxStoreState => {
   console.log(reduxStoreState);
   return {
-    rooms: reduxStoreState.room.rooms
+    rooms: reduxStoreState.room.rooms,
+    currentRoom: reduxStoreState.room.currentRoom
   };
 };
 

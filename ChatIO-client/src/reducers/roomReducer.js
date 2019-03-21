@@ -1,7 +1,7 @@
 import { UPDATE_ROOMS, SET_CURRENT_ROOM } from "../constants";
 
 const initialState = {
-  currentRoom: {},
+  currentRoom: null,
   rooms: []
 };
 
@@ -15,7 +15,10 @@ export default function(state = initialState, action) {
       };
     case SET_CURRENT_ROOM:
       console.log("Setting current room");
-      return state;
+      return {
+        ...state,
+        currentRoom: action.payload
+      };
     default:
       return state;
   }
