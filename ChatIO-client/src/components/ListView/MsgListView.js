@@ -1,11 +1,11 @@
 import React from "react";
-import MsgListViewItem from "../ListViewItem/UserListViewItem";
+import MsgListViewItem from "../ListViewItem/MsgListViewItem";
 
 const MsgListView = ({ messages }) => {
   return (
-    <ul className="list-view">
-      {messages.map(item => (
-        <MsgListViewItem listItem={item} />
+    <ul className="msg-list">
+      {messages.map((item, index) => (
+        <MsgListViewItem key={index} listItem={item} />
       ))}
     </ul>
   );

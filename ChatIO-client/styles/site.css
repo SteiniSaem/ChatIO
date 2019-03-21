@@ -108,3 +108,16 @@
 a {
   list-style-type: none;
 }
+.msg {
+  list-style-type: none;
+}
+
+.msg-time {
+  font-size: 10px;
+  color: gray;
+}
+
+.msg-nick {
+  font-weight: bold;
+  color: purple;
+}

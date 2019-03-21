@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Users from "../Users/Users";
 import Messages from "../Messages/Messages";
 import SocketContext from "../../contexts/SocketContext";
+import { updateChat } from "../../actions/roomActions";
 
 class ChatWindow extends React.Component {
   constructor(props) {
@@ -12,11 +13,38 @@ class ChatWindow extends React.Component {
       inputMessage: ""
     };
 
-    this.handleMessage = this.handleMessage.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+    this.onInput = this.onInput.bind(this);
   }
 
-  handleMessage() {
+  onInput(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  submitMessage() {
     const { socket } = this.context;
+    const { inputMessage } = this.state;
+    const { roomName, updateChat } = this.props;
+
+    console.log("msg is " + inputMessage);
+    const data = {};
+    data["roomName"] = roomName;
+    data["msg"] = inputMessage;
+    console.log(data);
+
+    console.log("Sending msg data");
+    socket.emit("sendmsg", data);
+
+    socket.on("updatechat", (room, msghistory) => {
+      console.log("got msg history");
+      console.log(msghistory);
+
+      const messageObj = {};
+      messageObj["roomName"] = room;
+      messageObj["messageHistory"] = msghistory;
+
+      updateChat(messageObj);
+    });
   }
 
   render() {
@@ -30,13 +58,22 @@ class ChatWindow extends React.Component {
               <h1>{room.topic}</h1>
             </div>
             <div className="chat-box">
-              <p>chat text here</p>
               <Messages messages={room.messageHistory} />
             </div>
           </div>
           <div className="text-box">
-            <input type="text" className="msg-input" />
-            <button className="send-btn sign-in-btn">Send</button>
+            <input
+              name="inputMessage"
+              onInput={e => this.onInput(e)}
+              type="text"
+              className="msg-input"
+            />
+            <button
+              onClick={this.submitMessage}
+              className="send-btn sign-in-btn"
+            >
+              Send
+            </button>
           </div>
         </div>
         <Users />
@@ -53,4 +90,7 @@ const mapStateToProps = reduxStoreState => {
 
 ChatWindow.contextType = SocketContext;
 
-export default connect(mapStateToProps)(ChatWindow);
+export default connect(
+  mapStateToProps,
+  { updateChat }
+)(ChatWindow);

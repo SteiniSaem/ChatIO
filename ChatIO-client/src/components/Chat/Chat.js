@@ -40,7 +40,7 @@ class Chat extends React.Component {
 
     if (currentRoom != null) {
       let roomName = Object.keys(currentRoom)[0];
-      chat = <ChatWindow room={currentRoom[roomName]} />;
+      chat = <ChatWindow room={currentRoom[roomName]} roomName={roomName} />;
     } else {
       chat = <h1>No lobby selected</h1>;
     }
