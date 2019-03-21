@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setCurrentRoom } from "../../actions/roomActions";
+import SocketContext from "../../contexts/SocketContext";
 
 class RoomListViewItem extends React.Component {
   constructor(props) {
@@ -14,10 +15,24 @@ class RoomListViewItem extends React.Component {
 
   handleClick() {
     const { setCurrentRoom, roomName } = this.props;
-    const room = {};
-    room[roomName] = this.state.room;
+    const { socket } = this.context;
 
-    setCurrentRoom(room);
+    // emit joinroom
+    const joinObj = {};
+    joinObj.room = roomName;
+
+    socket.emit("joinroom", joinObj, (valid, reason) => {
+      if (valid) {
+        console.log("joined room");
+
+        const room = {};
+        room[roomName] = this.state.room;
+
+        setCurrentRoom(room);
+      } else {
+        console.log("Cannot join this chat because of " + reason);
+      }
+    });
   }
 
   render() {
@@ -34,6 +49,8 @@ const mapStateToProps = reduxStoreState => {
   console.log(reduxStoreState);
   return {};
 };
+
+RoomListViewItem.contextType = SocketContext;
 
 export default connect(
   mapStateToProps,

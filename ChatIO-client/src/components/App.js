@@ -20,6 +20,16 @@ class App extends React.Component {
     socket.on("roomList", rooms => {
       // call action
     });
+
+    // updateusers
+
+    // servermessage
+
+    // updateusers
+
+    // updatechat
+
+    // updatetopic
   }
 
   constructor(props) {
