@@ -1,4 +1,4 @@
-import { UPDATE_ROOMS, SET_CURRENT_ROOM } from "../constants";
+import { UPDATE_ROOMS, SET_CURRENT_ROOM, UPDATE_USERS } from "../constants";
 
 const initialState = {
   currentRoom: null,
@@ -19,6 +19,9 @@ export default function(state = initialState, action) {
         ...state,
         currentRoom: action.payload
       };
+    case UPDATE_USERS:
+      console.log("updating users in reducer");
+      return state;
     default:
       return state;
   }

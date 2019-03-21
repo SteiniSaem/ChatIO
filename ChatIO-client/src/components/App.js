@@ -21,6 +21,13 @@ class App extends React.Component {
       // call action
     });
 
+    socket.on("updateusers", (room, users, ops) => {
+      console.log("Updating users ");
+      console.log(room);
+      console.log(users);
+      console.log(ops);
+    });
+
     // updateusers
 
     // servermessage

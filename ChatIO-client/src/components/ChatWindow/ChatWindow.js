@@ -26,7 +26,6 @@ const ChatWindow = ({ room }) => {
 
 const mapStateToProps = reduxStoreState => {
   return {
-    // freedom to make this object look like i want
     nickName: reduxStoreState.user.nickName
   };
 };
