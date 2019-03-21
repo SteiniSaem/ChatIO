@@ -1,15 +1,21 @@
 import React from "react";
+import RoomListView from "../ListView/RoomListView";
+import { connect } from "react-redux";
 
-const Rooms = () => {
-  return (
-    <div>
-      <ul className="room-list">
-        <li className="room-list-item">Room 1</li>
-        <li className="room-list-item">Room 2</li>
-        <li className="room-list-item">Room 3</li>
-      </ul>
-    </div>
-  );
+class Rooms extends React.component {
+  render() {
+    return (
+      <div>
+        <RoomListView list={roomList} />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = reduxStoreState => {
+  return {
+    roomList: reduxStoreState.room.rooms
+  };
 };
 
-export default Rooms;
+export default connect(mapStateToProps)(Rooms);
