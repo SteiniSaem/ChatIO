@@ -14,11 +14,11 @@ class App extends React.Component {
     const { socket } = this.context;
 
     socket.on("userList", users => {
-      console.log("Got user list from server");
+      // call action
     });
 
     socket.on("roomList", rooms => {
-      console.log("Got room list from server");
+      // call action
     });
   }
 
