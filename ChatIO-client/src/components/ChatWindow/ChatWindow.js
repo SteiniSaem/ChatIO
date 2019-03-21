@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Users from "../Users/Users";
+import Messages from "../Messages/Messages";
 
 const ChatWindow = ({ room }) => {
   return (
@@ -12,6 +13,7 @@ const ChatWindow = ({ room }) => {
           </div>
           <div className="chat-box">
             <p>chat text here</p>
+            <Messages messages={room.messageHistory} />
           </div>
         </div>
         <div className="text-box">
