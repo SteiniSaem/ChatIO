@@ -35,7 +35,8 @@ class Chat extends React.Component {
     console.log(rooms.lobby);
     return (
       <div className="chat">
-        <Rooms />
+        <Rooms roomList={rooms} />
+
         <div className="chat-text">
           <div className="chat-box">
             <p>halo</p>
@@ -45,6 +46,8 @@ class Chat extends React.Component {
             <button className="send-btn sign-in-btn">Send</button>
           </div>
         </div>
+
+        <Users />
       </div>
     );
   }

@@ -1,11 +1,13 @@
 import React from "react";
 import RoomListViewItem from "../ListViewItem/RoomListViewItem";
 
-const RoomListView = props => {
+const RoomListView = ({ roomList }) => {
+  console.log("IN ROOM LIST VIEW");
+  console.log(roomList);
   return (
-    <ul className="list-view">
-      {props.list.map(item => (
-        <RoomListViewItem listItem={item.topic} />
+    <ul className="room-list">
+      {Object.keys(roomList).map(key => (
+        <RoomListViewItem key={key} roomName={key} room={roomList[key]} />
       ))}
     </ul>
   );

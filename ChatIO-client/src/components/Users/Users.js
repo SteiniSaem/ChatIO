@@ -2,18 +2,16 @@ import React from "react";
 import UserListView from "../ListView/UserListView";
 import { connect } from "react-redux";
 
-const Users = () => {
+const Users = ({ userList }) => {
   return (
     <div>
-      <UserListView list={userList} />
+      <ul className="user-list">
+        <li className="user-list-item">User 1</li>
+        <li className="user-list-item">User 2</li>
+        <li className="user-list-item">User 3</li>
+      </ul>
     </div>
   );
 };
 
-const mapStateToProps = reduxStoreState => {
-  return {
-    userList: reduxStoreState.room
-  };
-};
-
-export default connect(mapStateToProps)(Users);
+export default Users;
