@@ -45,7 +45,6 @@ class Chat extends React.Component {
             <button className="send-btn sign-in-btn">Send</button>
           </div>
         </div>
-        <Users />
       </div>
     );
   }
