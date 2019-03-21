@@ -22,6 +22,7 @@ export default function(state = initialState, action) {
     case UPDATE_USERS:
       console.log("updating users in reducer");
       return state;
+
     default:
       return state;
   }
