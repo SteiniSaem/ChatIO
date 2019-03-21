@@ -2,7 +2,7 @@ import React from "react";
 
 const UserListViewItem = props => {
   return (
-    <li>
+    <li class="user-list">
       <p>{props.item}</p>
     </li>
   );
