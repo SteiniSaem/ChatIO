@@ -43,6 +43,9 @@ class ChatWindow extends React.Component {
       messageObj["roomName"] = room;
       messageObj["messageHistory"] = msghistory;
 
+      console.log("clearing input");
+      document.getElementById("msg-input").value = "";
+
       updateChat(messageObj);
     });
   }
@@ -67,6 +70,7 @@ class ChatWindow extends React.Component {
               onInput={e => this.onInput(e)}
               type="text"
               className="msg-input"
+              id="msg-input"
             />
             <button
               onClick={this.submitMessage}
