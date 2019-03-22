@@ -125,3 +125,13 @@ a {
   font-weight: bold;
   color: purple;
 }
+
+.msg-list {
+  padding-left: 10px;
+}
+
+.chat-topic {
+  padding-left: 10px;
+  border-bottom: 2px solid purple;
+  padding-bottom: 5px;
+}
