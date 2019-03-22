@@ -25,10 +25,7 @@ class RoomListViewItem extends React.Component {
       if (valid) {
         console.log("joined room");
 
-        const room = {};
-        room[roomName] = this.state.room;
-
-        setCurrentRoom(room);
+        setCurrentRoom(roomName);
       } else {
         console.log("Cannot join this chat because of " + reason);
       }

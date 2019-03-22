@@ -17,6 +17,16 @@ class ChatWindow extends React.Component {
     this.onInput = this.onInput.bind(this);
   }
 
+  componentDidMount() {
+    let input = document.getElementById("msg-input");
+
+    input.addEventListener("keyup", event => {
+      if (event.keyCode === 13) {
+        document.getElementById("send-btn").click();
+      }
+    });
+  }
+
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -35,19 +45,7 @@ class ChatWindow extends React.Component {
     console.log("Sending msg data");
     socket.emit("sendmsg", data);
 
-    socket.on("updatechat", (room, msghistory) => {
-      console.log("got msg history");
-      console.log(msghistory);
-
-      const messageObj = {};
-      messageObj["roomName"] = room;
-      messageObj["messageHistory"] = msghistory;
-
-      console.log("clearing input");
-      document.getElementById("msg-input").value = "";
-
-      updateChat(messageObj);
-    });
+    document.getElementById("msg-input").value = "";
   }
 
   render() {
@@ -75,6 +73,7 @@ class ChatWindow extends React.Component {
             <button
               onClick={this.submitMessage}
               className="send-btn sign-in-btn"
+              id="send-btn"
             >
               Send
             </button>

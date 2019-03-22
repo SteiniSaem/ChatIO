@@ -6,7 +6,7 @@ import {
 } from "../constants";
 
 const initialState = {
-  currentRoom: null,
+  currentRoom: "",
   rooms: []
 };
 
@@ -26,6 +26,7 @@ export default function(state = initialState, action) {
       };
     case UPDATE_USERS:
       console.log("Updating users in reducer");
+
       return state;
     case UPDATE_CHAT:
       console.log("Updating chat in reducer");

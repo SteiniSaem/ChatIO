@@ -11,10 +11,6 @@ import SocketContext from "../../contexts/SocketContext";
 class Chat extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentRoom: {}
-    };
   }
 
   componentDidMount() {
@@ -38,9 +34,8 @@ class Chat extends React.Component {
 
     let chat;
 
-    if (currentRoom != null) {
-      let roomName = Object.keys(currentRoom)[0];
-      chat = <ChatWindow room={currentRoom[roomName]} roomName={roomName} />;
+    if (currentRoom != "") {
+      chat = <ChatWindow room={rooms[currentRoom]} roomName={currentRoom} />;
     } else {
       chat = <h1>No lobby selected</h1>;
     }

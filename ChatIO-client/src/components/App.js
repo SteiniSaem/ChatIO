@@ -1,9 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Navbar from "../components/Navbar/Navbar";
 import Chat from "../components/Chat/Chat";
 import SocketContext from "../contexts/SocketContext";
+import { connect } from "react-redux";
+import { updateChat } from "../actions/roomActions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,6 +15,7 @@ class App extends React.Component {
     // users
 
     const { socket } = this.context;
+    const { updateChat } = this.props;
 
     socket.on("userList", users => {
       // call action
@@ -35,6 +39,16 @@ class App extends React.Component {
     // updateusers
 
     // updatechat
+    socket.on("updatechat", (room, msghistory) => {
+      console.log("got msg history");
+      console.log(msghistory);
+
+      const messageObj = {};
+      messageObj["roomName"] = room;
+      messageObj["messageHistory"] = msghistory;
+
+      updateChat(messageObj);
+    });
 
     // updatetopic
   }
@@ -56,6 +70,17 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = reduxStoreState => {
+  return {
+    nickName: reduxStoreState.user.nickName
+  };
+};
+
 App.contextType = SocketContext;
 
-export default App;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { updateChat }
+  )(App)
+);
