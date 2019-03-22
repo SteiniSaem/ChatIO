@@ -18,12 +18,26 @@ class ChatWindow extends React.Component {
   }
 
   componentDidMount() {
+    $(".chat-box").scrollTop(
+      $(".chat-box")
+        .children()
+        .height()
+    );
+
     let input = document.getElementById("msg-input");
 
     input.addEventListener("keyup", event => {
       if (event.keyCode === 13) {
         document.getElementById("send-btn").click();
       }
+    });
+
+    $("body").on("DOMSubtreeModified", ".chat-box", function() {
+      $(".chat-box").scrollTop(
+        $(".chat-box")
+          .children()
+          .height()
+      );
     });
   }
 
@@ -59,8 +73,10 @@ class ChatWindow extends React.Component {
             <div className="chat-topic">
               <h1>{room.topic}</h1>
             </div>
-            <div className="chat-box">
-              <Messages messages={room.messageHistory} />
+            <div className="chat-box-parent">
+              <div className="chat-box">
+                <Messages messages={room.messageHistory} />
+              </div>
             </div>
           </div>
           <div className="text-box">

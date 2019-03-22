@@ -23,7 +23,7 @@
 }
 
 .sign-in-btn {
-  width: 100px;
+  width: 150px;
   box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;
   text-shadow: 0px 0px 0px transparent;
@@ -48,9 +48,9 @@
 }
 
 .chat-box {
-  border: solid;
-  border: 20px;
   width: 600px;
+  height: 400px;
+  overflow-y: scroll;
 }
 
 .chat-text {
@@ -58,9 +58,6 @@
   flex-flow: column;
   justify-content: space-between;
   margin-bottom: 0px;
-  border-top: solid;
-  border-width: 1px;
-  border-color: gray;
 }
 
 .text-box {
@@ -84,28 +81,43 @@
 
 .room-list,
 .user-list {
-  border: solid;
-  border-color: grey;
-  border-width: 1px;
   list-style-type: none;
   align-content: center;
   padding-left: 0px;
-  height: 500px;
   margin-bottom: 0px;
 }
 
-.room-list-item:hover {
-  background-color: #e7e7e7;
+.room-list-header,
+.user-list-header {
+  border: solid;
+  border-color: purple;
+  border-width: 1px;
+  align-content: center;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  padding: 10px 10px 15px 10px;
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+.room-section,
+.user-section {
+  background-color: purple;
+  height: 500px;
+}
+
+.room-list-item:hover,
+.user-list-item:hover {
+  background-color: white;
+  color: purple;
   cursor: pointer;
 }
 
-.room-list-item {
-  padding: 20px;
-}
-
+.room-list-item,
 .user-list-item {
   padding: 10px;
   margin-bottom: 0px;
+  color: white;
 }
 
 a {
@@ -133,5 +145,14 @@ a {
 .chat-topic {
   padding-left: 10px;
   border-bottom: 2px solid purple;
+  border-top: 2px solid purple;
   padding-bottom: 5px;
+}
+
+.create-room-form {
+  padding: 10px;
+}
+
+.create-room-input {
+  margin: 5px 0px 5px 0px;
 }

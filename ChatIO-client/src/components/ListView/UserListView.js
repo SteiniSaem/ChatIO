@@ -5,11 +5,14 @@ const UserListView = ({ userList }) => {
   console.log("userListComponent");
   console.log(userList);
   return (
-    <ul className="user-list">
-      {Object.keys(userList).map(key => (
-        <UserListViewItem key={key} nickName={key} user={userList[key]} />
-      ))}
-    </ul>
+    <div className="user-section">
+      <h3 className="user-list-header">Users</h3>
+      <ul className="user-list">
+        {Object.keys(userList).map(key => (
+          <UserListViewItem key={key} nickName={key} user={userList[key]} />
+        ))}
+      </ul>
+    </div>
   );
 };
 
