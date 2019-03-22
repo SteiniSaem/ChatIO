@@ -1,9 +1,9 @@
 import React from "react";
 
-const UserListViewItem = props => {
+const UserListViewItem = ({ nickName }) => {
   return (
-    <li className="user-list">
-      <p>{props.item}</p>
+    <li className="user-list-item">
+      <span>{nickName}</span>
     </li>
   );
 };

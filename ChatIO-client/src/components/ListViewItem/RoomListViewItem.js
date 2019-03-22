@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrentRoom } from "../../actions/roomActions";
+import { setCurrentRoom, updateUsers } from "../../actions/roomActions";
 import SocketContext from "../../contexts/SocketContext";
 
 class RoomListViewItem extends React.Component {
@@ -51,5 +51,5 @@ RoomListViewItem.contextType = SocketContext;
 
 export default connect(
   mapStateToProps,
-  { setCurrentRoom }
+  { setCurrentRoom, updateUsers }
 )(RoomListViewItem);

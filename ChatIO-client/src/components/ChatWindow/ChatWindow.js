@@ -50,7 +50,8 @@ class ChatWindow extends React.Component {
 
   render() {
     const { room } = this.props;
-
+    console.log("ROOOOMMSSSS!!!!");
+    console.log(room.users);
     return (
       <div className="not-room-list">
         <div className="chat-text">
@@ -79,7 +80,7 @@ class ChatWindow extends React.Component {
             </button>
           </div>
         </div>
-        <Users />
+        <Users userList={room.users} />
       </div>
     );
   }

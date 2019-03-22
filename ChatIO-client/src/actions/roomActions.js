@@ -2,7 +2,8 @@ import {
   UPDATE_ROOMS,
   SET_CURRENT_ROOM,
   SEND,
-  UPDATE_CHAT
+  UPDATE_CHAT,
+  UPDATE_USERS
 } from "../constants";
 
 export const updateRooms = rooms => {
@@ -27,5 +28,12 @@ export const updateChat = messageObj => {
   return {
     type: UPDATE_CHAT,
     payload: messageObj
+  };
+};
+
+export const updateUsers = userObj => {
+  return {
+    type: UPDATE_USERS,
+    payload: userObj
   };
 };

@@ -4,8 +4,9 @@ import { withRouter } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Navbar from "../components/Navbar/Navbar";
 import Chat from "../components/Chat/Chat";
-import SocketContext from "../contexts/SocketContext";
+import { updateUsers } from "../actions/roomActions";
 import { connect } from "react-redux";
+import SocketContext from "../contexts/SocketContext";
 import { updateChat } from "../actions/roomActions";
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
     // users
 
     const { socket } = this.context;
-    const { updateChat } = this.props;
+    const { updateChat, updateUsers } = this.props;
 
     socket.on("userList", users => {
       // call action
@@ -27,9 +28,13 @@ class App extends React.Component {
 
     socket.on("updateusers", (room, users, ops) => {
       console.log("Updating users ");
-      console.log(room);
-      console.log(users);
-      console.log(ops);
+
+      const userObj = {};
+      userObj["roomName"] = room;
+      userObj["userList"] = users;
+      userObj["opList"] = ops;
+
+      updateUsers(userObj);
     });
 
     // updateusers
@@ -81,6 +86,7 @@ App.contextType = SocketContext;
 export default withRouter(
   connect(
     mapStateToProps,
-    { updateChat }
+
+    { updateChat, updateUsers }
   )(App)
 );

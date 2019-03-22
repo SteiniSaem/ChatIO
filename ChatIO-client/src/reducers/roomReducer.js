@@ -27,7 +27,17 @@ export default function(state = initialState, action) {
     case UPDATE_USERS:
       console.log("Updating users in reducer");
 
-      return state;
+      return {
+        ...state,
+        rooms: {
+          ...state.rooms,
+          [action.payload.roomName]: {
+            ...state.rooms[action.payload.roomName],
+            users: action.payload.userList
+          }
+        }
+      };
+
     case UPDATE_CHAT:
       console.log("Updating chat in reducer");
       console.log(action.payload);
