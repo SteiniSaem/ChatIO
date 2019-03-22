@@ -94,15 +94,18 @@
   margin-bottom: 0px;
 }
 
-.room-list-item:hover,
-.user-list-item:hover {
+.room-list-item:hover {
   background-color: #e7e7e7;
   cursor: pointer;
 }
 
-.user-list-item,
 .room-list-item {
   padding: 20px;
+}
+
+.user-list-item {
+  padding: 10px;
+  margin-bottom: 0px;
 }
 
 a {
@@ -110,6 +113,7 @@ a {
 }
 .msg {
   list-style-type: none;
+  margin-top: 10px;
 }
 
 .msg-time {

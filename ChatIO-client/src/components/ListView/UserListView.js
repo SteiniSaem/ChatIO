@@ -1,11 +1,13 @@
 import React from "react";
 import UserListViewItem from "../ListViewItem/UserListViewItem";
 
-const UserListView = ({ list }) => {
+const UserListView = ({ userList }) => {
+  console.log("userListComponent");
+  console.log(userList);
   return (
-    <ul className="list-view">
-      {list.map(item => (
-        <UserListViewItem listItem={item.nickname} />
+    <ul className="user-list">
+      {Object.keys(userList).map(key => (
+        <UserListViewItem key={key} nickName={key} user={userList[key]} />
       ))}
     </ul>
   );
