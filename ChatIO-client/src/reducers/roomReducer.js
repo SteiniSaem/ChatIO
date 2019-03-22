@@ -32,7 +32,8 @@ export default function(state = initialState, action) {
           ...state.rooms,
           [action.payload.roomName]: {
             ...state.rooms[action.payload.roomName],
-            users: action.payload.userList
+            users: action.payload.userList,
+            ops: action.payload.opList
           }
         }
       };
