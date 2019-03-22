@@ -23,7 +23,7 @@ const RoomListView = ({ roomList }) => {
           className="create-room-input"
         />
         <br />
-        <button className="sign-in-btn">Create room</button>
+        <button className="sign-in-btn create-room-btn">Create room</button>
       </div>
     </div>
   );
