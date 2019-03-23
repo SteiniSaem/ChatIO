@@ -13,6 +13,15 @@ class Landing extends React.Component {
 
     this.addUser = this.addUser.bind(this);
   }
+  componentDidMount() {
+    let input = document.getElementById("nick-input");
+
+    input.addEventListener("keyup", event => {
+      if (event.keyCode === 13) {
+        document.getElementById("sign-in-btn").click();
+      }
+    });
+  }
 
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -50,11 +59,16 @@ class Landing extends React.Component {
             type="text"
             name="nickName"
             onInput={e => this.onInput(e)}
+            id="nick-input"
             className="form-control"
             placeholder="Username"
             value={nickName}
           />
-          <button className="sign-in-btn" onClick={this.addUser}>
+          <button
+            className="sign-in-btn"
+            id="sign-in-btn"
+            onClick={this.addUser}
+          >
             Continue
           </button>
         </div>

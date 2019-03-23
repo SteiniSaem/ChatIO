@@ -22,6 +22,7 @@ class RoomListViewItem extends React.Component {
     joinObj.room = roomName;
 
     if (currentRoom != "") {
+      document.getElementById(currentRoom).classList.remove("selected");
       socket.emit("partroom", currentRoom);
     }
 
@@ -33,13 +34,15 @@ class RoomListViewItem extends React.Component {
       } else {
         console.log("Cannot join this chat because of " + reason);
       }
+
+      document.getElementById(roomName).classList.add("selected");
     });
   }
 
   render() {
     const { roomName } = this.props;
     return (
-      <li onClick={this.handleClick} className="room-list-item">
+      <li id={roomName} onClick={this.handleClick} className="room-list-item">
         {roomName}
       </li>
     );
