@@ -2,7 +2,8 @@ import {
   UPDATE_ROOMS,
   SET_CURRENT_ROOM,
   UPDATE_USERS,
-  UPDATE_CHAT
+  UPDATE_CHAT,
+  UPDATE_TOPIC
 } from "../constants";
 
 const initialState = {
@@ -52,6 +53,17 @@ export default function(state = initialState, action) {
           [action.payload.roomName]: {
             ...state.rooms[action.payload.roomName],
             messageHistory: action.payload.messageHistory
+          }
+        }
+      };
+    case UPDATE_TOPIC:
+      return {
+        ...state,
+        rooms: {
+          ...state.rooms,
+          [action.payload.roomName]: {
+            ...state.rooms[action.payload.roomName],
+            topic: action.payload.topic
           }
         }
       };

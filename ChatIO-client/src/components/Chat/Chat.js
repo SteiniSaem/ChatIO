@@ -15,15 +15,8 @@ class Chat extends React.Component {
 
   componentDidMount() {
     const { socket } = this.context;
-    const { updateRooms } = this.props;
 
     socket.emit("rooms");
-
-    socket.on("roomlist", rooms => {
-      console.log("getting updated rooms");
-      console.log(rooms);
-      updateRooms({ rooms });
-    });
   }
 
   render() {

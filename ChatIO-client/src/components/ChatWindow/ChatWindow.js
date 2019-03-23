@@ -86,6 +86,7 @@ class ChatWindow extends React.Component {
               type="text"
               className="msg-input"
               id="msg-input"
+              placeholder="message"
             />
             <button
               onClick={this.submitMessage}

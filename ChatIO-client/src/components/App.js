@@ -4,10 +4,14 @@ import { withRouter } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Navbar from "../components/Navbar/Navbar";
 import Chat from "../components/Chat/Chat";
-import { updateUsers } from "../actions/roomActions";
 import { connect } from "react-redux";
 import SocketContext from "../contexts/SocketContext";
-import { updateChat } from "../actions/roomActions";
+import {
+  updateChat,
+  updateUsers,
+  updateTopic,
+  updateRooms
+} from "../actions/roomActions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,18 +20,21 @@ class App extends React.Component {
     // users
 
     const { socket } = this.context;
-    const { updateChat, updateUsers } = this.props;
+    const { updateChat, updateUsers, updateTopic, updateRooms } = this.props;
 
     socket.on("userList", users => {
       // call action
     });
 
-    socket.on("roomList", rooms => {
-      // call action
+    socket.on("roomlist", rooms => {
+      console.log("getting updated rooms");
+      console.log(rooms);
+      updateRooms({ rooms });
     });
 
     socket.on("updateusers", (room, users, ops) => {
       console.log("Updating users ");
+      console.log(users);
 
       const userObj = {};
       userObj["roomName"] = room;
@@ -56,6 +63,18 @@ class App extends React.Component {
     });
 
     // updatetopic
+    socket.on("updatetopic", (room, topic, nickName) => {
+      console.log("got update topic");
+      console.log(room);
+      console.log(topic);
+
+      const obj = {};
+      obj["roomName"] = room;
+      obj["topic"] = topic;
+      obj["nickName"] = nickName;
+
+      updateTopic(obj);
+    });
   }
 
   constructor(props) {
@@ -87,6 +106,6 @@ export default withRouter(
   connect(
     mapStateToProps,
 
-    { updateChat, updateUsers }
+    { updateChat, updateUsers, updateTopic, updateRooms }
   )(App)
 );
