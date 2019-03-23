@@ -51,7 +51,9 @@ class Landing extends React.Component {
         <div className="landing-title">
           <h1>Enter Your Nickname</h1>
         </div>
-        {nickExists && <span className="error">Username already exists</span>}
+        {nickExists && (
+          <span className="error">Username already exists or is too long</span>
+        )}
         <div className="landing-input">
           <input
             type="text"
