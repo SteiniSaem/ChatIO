@@ -16,6 +16,9 @@ var users = {};
 rooms.lobby = new Room();
 rooms.lobby.setTopic("Welcome to the lobby!");
 
+rooms.test = new Room();
+rooms.test.setTopic("Bændasamfélagið");
+
 io.on("connection", function(socket) {
   console.log("user connected");
   //This gets performed when a user joins the server.
@@ -299,6 +302,7 @@ io.on("connection", function(socket) {
 
   //Returns a list of all avaliable rooms.
   socket.on("rooms", function() {
+    console.log("roomss");
     socket.emit("roomlist", rooms);
   });
 
