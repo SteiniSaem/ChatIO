@@ -35,7 +35,26 @@ class UserListViewItem extends React.Component {
         console.log("failed sending private message");
       }
     });
+
+    this.setState({ visible: !this.state.visible });
   }
+
+  kickUser() {
+    const { socket } = this.context;
+    const { nickName, currentRoom } = this.props;
+
+    const kickObj = {};
+    kickObj["user"] = nickName;
+    kickObj["room"] = currentRoom;
+
+    socket.emit("kick", kickObj, valid => {
+      if (valid) {
+        console.log("Kicked " + nickName);
+      }
+    });
+  }
+
+  banUser() {}
 
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });
