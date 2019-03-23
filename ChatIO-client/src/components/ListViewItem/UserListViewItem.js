@@ -11,6 +11,18 @@ class UserListViewItem extends React.Component {
     this.MsgBtnClicked = this.MsgBtnClicked.bind(this);
   }
 
+  componentDidMount() {
+    if (this.state.visible) {
+      let input = document.getElementById("pvt-msg-input");
+
+      input.addEventListener("keyup", event => {
+        if (event.keyCode === 13) {
+          document.getElementById("send-pvt-msg-btn").click();
+        }
+      });
+    }
+  }
+
   MsgBtnClicked() {
     this.setState({
       visible: !this.state.visible
@@ -24,8 +36,15 @@ class UserListViewItem extends React.Component {
     if (visible) {
       msgInput = (
         <div className="pvt-msg-form">
-          <input type="text" placeholder="Message" className="pvt-msg-input" />
-          <button className="send-pvt-msg-btn">Send</button>
+          <input
+            type="text"
+            placeholder="Message"
+            id="pvt-msg-input"
+            className="pvt-msg-input"
+          />
+          <button id="send-pvt-msg-btn" className="send-pvt-msg-btn">
+            Send
+          </button>
         </div>
       );
     }

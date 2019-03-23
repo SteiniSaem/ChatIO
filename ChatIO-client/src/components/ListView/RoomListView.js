@@ -16,6 +16,14 @@ class RoomListView extends React.Component {
     this.onInput = this.onInput.bind(this);
     this.submitRoom = this.submitRoom.bind(this);
   }
+  componentDidMount() {
+    let input = document.getElementById("create-room-input");
+    input.addEventListener("keyup", event => {
+      if (event.keyCode === 13) {
+        document.getElementById("create-room-btn").click();
+      }
+    });
+  }
 
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -80,6 +88,7 @@ class RoomListView extends React.Component {
             type="text"
             placeholder="Room topic"
             className="create-room-input"
+            id="create-room-input"
             name="topic"
             onInput={e => this.onInput(e)}
           />
@@ -87,6 +96,7 @@ class RoomListView extends React.Component {
           <button
             onClick={this.submitRoom}
             className="sign-in-btn create-room-btn"
+            id="create-room-btn"
           >
             Create room
           </button>

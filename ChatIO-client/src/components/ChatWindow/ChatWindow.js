@@ -71,7 +71,7 @@ class ChatWindow extends React.Component {
       {
         nick: "He-man Bot",
         message:
-          "With this chatting application we can finally defend Castle Greyskull from the evil forces of Skeletor!",
+          "With this chatting application we can finally defend Castle Grayskull from the evil forces of Skeletor!",
         timestamp: "JUST NOW"
       }
     ];
