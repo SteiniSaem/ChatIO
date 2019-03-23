@@ -54,14 +54,12 @@
 }
 .chat {
   display: flex;
-  justify-content: center;
-  flex-grow: 1;
-  margin-top: 50px;
+  flex: 1;
 }
 
 .chat-box {
-  width: 600px;
-  height: 400px;
+  width: 800px;
+  height: 800px;
   overflow-y: scroll;
 }
 
@@ -74,12 +72,12 @@
 
 .text-box {
   display: flex;
-  width: 600px;
+  width: 800px;
   margin-left: 10px;
 }
 
 .msg-input {
-  width: 530px;
+  width: 730px;
   height: 40px;
 }
 
@@ -95,11 +93,14 @@
 
 .room-list,
 .user-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 700px;
   list-style-type: none;
   align-content: center;
   padding-left: 0px;
   margin-bottom: 0px;
-  height: 300px;
   overflow-y: scroll;
   min-width: 150px;
 }
@@ -129,13 +130,13 @@
     #3494e6,
     #ec6ead
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  height: 500px;
+  height: 100%;
 }
 
 .user-section {
   background-color: purple;
 
-  height: 500px;
+  height: 100%;
 }
 
 .room-list-item:hover {
@@ -165,6 +166,7 @@ a {
 .msg {
   list-style-type: none;
   margin-top: 10px;
+  word-wrap: break-word;
 }
 
 .msg-time {
