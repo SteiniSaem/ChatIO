@@ -176,6 +176,12 @@ class UserListViewItem extends React.Component {
           <span>
             <strong>@{nickName}</strong>
           </span>
+          <div className="action-btns">
+            <button className="action-btn" onClick={this.MsgBtnClicked}>
+              Message
+            </button>
+          </div>
+          {msgInput}
         </li>
       );
     } else {
