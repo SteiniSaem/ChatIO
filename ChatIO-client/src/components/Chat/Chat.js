@@ -2,6 +2,7 @@ import React from "react";
 import Rooms from "../Rooms/Rooms";
 import Users from "../Users/Users";
 import ChatWindow from "../ChatWindow/ChatWindow";
+import PrivateMessages from "../Messages/PrivateMessages";
 
 import { connect } from "react-redux";
 import { updateRooms } from "../../actions/roomActions";
@@ -20,7 +21,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { rooms, currentRoom, nickName } = this.props;
+    const { rooms, currentRoom, nickName, privateMessages } = this.props;
 
     console.log("this is rooms");
     console.log(rooms.lobby);
@@ -40,6 +41,9 @@ class Chat extends React.Component {
         <div className="chat">
           <Rooms roomList={rooms} />
           {chat}
+          <div className="pvt-msg">
+            <PrivateMessages messages={privateMessages} />
+          </div>
         </div>
       );
     } else {
@@ -55,7 +59,8 @@ const mapStateToProps = reduxStoreState => {
   return {
     rooms: reduxStoreState.room.rooms,
     currentRoom: reduxStoreState.room.currentRoom,
-    nickName: reduxStoreState.user.nickName
+    nickName: reduxStoreState.user.nickName,
+    privateMessages: reduxStoreState.user.privateMessages
   };
 };
 
