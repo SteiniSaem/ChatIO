@@ -54,7 +54,6 @@
 }
 .chat {
   display: flex;
-  flex: 1;
 }
 
 .chat-box {
@@ -125,7 +124,6 @@
 
 .user-section {
   background-color: purple;
-
   height: 100%;
 }
 
@@ -199,4 +197,13 @@ a {
 
 .pvt-msg {
   margin-left: 10px;
+}
+
+.pvt-msg-form {
+  margin-top: 20px;
+}
+
+.send-pvt-msg-btn {
+  background-color: #b76ac4;
+  color: white;
 }

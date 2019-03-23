@@ -55,7 +55,9 @@ class UserListViewItem extends React.Component {
             placeholder="Message"
             className="pvt-msg-input"
           />
-          <button onClick={this.sendPrivateMsg}>Send</button>
+          <button className="send-pvt-msg-btn" onClick={this.sendPrivateMsg}>
+            Send
+          </button>
         </div>
       );
     }
