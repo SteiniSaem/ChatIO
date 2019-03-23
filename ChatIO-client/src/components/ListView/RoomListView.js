@@ -30,8 +30,6 @@ class RoomListView extends React.Component {
   }
 
   submitRoom() {
-    console.log(this.state.roomName + " " + this.state.topic);
-
     const { socket } = this.context;
     const { setCurrentRoom } = this.props;
     const { roomName, topic } = this.state;
@@ -45,21 +43,14 @@ class RoomListView extends React.Component {
 
     socket.emit("joinroom", joinObj, (valid, reason) => {
       if (valid) {
-        console.log("Created room");
-
-        console.log("setting topic");
         socket.emit("settopic", topicObj, valid => {
           if (valid) {
-            console.log("set topic worked");
-
             // get new rooms list
             socket.emit("rooms");
           } else {
-            console.log("set topic failed");
           }
         });
       } else {
-        console.log("Cannot join this chat because of " + reason);
       }
     });
   }

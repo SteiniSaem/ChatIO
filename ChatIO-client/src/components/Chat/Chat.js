@@ -22,10 +22,6 @@ class Chat extends React.Component {
 
   render() {
     const { rooms, currentRoom, nickName, privateMessages } = this.props;
-
-    console.log("this is rooms");
-    console.log(rooms.lobby);
-
     let chat;
 
     if (currentRoom != "") {
@@ -61,7 +57,6 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-  console.log(reduxStoreState);
   return {
     rooms: reduxStoreState.room.rooms,
     currentRoom: reduxStoreState.room.currentRoom,

@@ -78,7 +78,6 @@ class Landing extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-  console.log(reduxStoreState);
   return {};
 };
 

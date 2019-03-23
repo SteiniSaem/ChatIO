@@ -35,7 +35,6 @@ class UserListViewItem extends React.Component {
 
     socket.emit("privatemsg", msgObj, valid => {
       if (!valid) {
-        console.log("failed sending private message");
       }
     });
 
@@ -52,7 +51,6 @@ class UserListViewItem extends React.Component {
 
     socket.emit("kick", kickObj, valid => {
       if (valid) {
-        console.log("Kicked " + nickName);
       }
     });
   }
@@ -67,7 +65,6 @@ class UserListViewItem extends React.Component {
 
     socket.emit("ban", banObj, valid => {
       if (valid) {
-        console.log("Banned " + nickName);
       }
     });
   }
@@ -179,7 +176,6 @@ class UserListViewItem extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-  console.log(reduxStoreState);
   return {
     myNick: reduxStoreState.user.nickName,
     currentRoom: reduxStoreState.room.currentRoom,

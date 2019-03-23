@@ -54,13 +54,10 @@ class ChatWindow extends React.Component {
     const { inputMessage } = this.state;
     const { roomName } = this.props;
 
-    console.log("msg is " + inputMessage);
     const data = {};
     data["roomName"] = roomName;
     data["msg"] = inputMessage;
-    console.log(data);
 
-    console.log("Sending msg data");
     socket.emit("sendmsg", data);
 
     document.getElementById("msg-input").value = "";
@@ -68,8 +65,6 @@ class ChatWindow extends React.Component {
 
   render() {
     const { room } = this.props;
-    console.log("ROOOOMMSSSS!!!!");
-    console.log(room.users);
 
     const botMsg = [
       {

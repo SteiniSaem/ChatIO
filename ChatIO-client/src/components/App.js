@@ -31,16 +31,11 @@ class App extends React.Component {
 
     // roomlist
     socket.on("roomlist", rooms => {
-      console.log("getting updated rooms");
-      console.log(rooms);
       updateRooms({ rooms });
     });
 
     // updateusers
     socket.on("updateusers", (room, users, ops) => {
-      console.log("Updating users ");
-      console.log(users);
-
       const userObj = {};
       userObj["roomName"] = room;
       userObj["userList"] = users;
@@ -53,9 +48,6 @@ class App extends React.Component {
 
     // updatechat
     socket.on("updatechat", (room, msghistory) => {
-      console.log("got msg history");
-      console.log(msghistory);
-
       const messageObj = {};
       messageObj["roomName"] = room;
       messageObj["messageHistory"] = msghistory;
@@ -65,10 +57,6 @@ class App extends React.Component {
 
     // updatetopic
     socket.on("updatetopic", (room, topic, nickName) => {
-      console.log("got update topic");
-      console.log(room);
-      console.log(topic);
-
       const obj = {};
       obj["roomName"] = room;
       obj["topic"] = topic;
@@ -79,8 +67,6 @@ class App extends React.Component {
 
     // recv private message
     socket.on("recv_privatemsg", (nickName, message) => {
-      console.log("received" + message + " from " + nickName);
-
       const privgMsgObj = {};
       privgMsgObj["nickName"] = nickName;
       privgMsgObj["message"] = message;

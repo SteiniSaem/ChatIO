@@ -2,8 +2,6 @@ import React from "react";
 import UserListViewItem from "../ListViewItem/UserListViewItem";
 
 const UserListView = ({ userList }) => {
-  console.log("userListComponent");
-  console.log(userList);
   return (
     <div className="user-section">
       <h3 className="user-list-header">Users</h3>

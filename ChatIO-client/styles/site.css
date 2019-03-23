@@ -15,7 +15,9 @@
   background-color: #e7e7e7;
 }
 .logo {
-  width: 100px;
+  width: 70px;
+  border-radius: 50%;
+  height: 70px;
 }
 
 .heeman-edition {
@@ -152,8 +154,12 @@
   color: white;
 }
 
+.user-list-item {
+  border-bottom: 2px solid #b76ac4;
+}
+
 .user-list-item-nick {
-  margin-right: 10px;
+  margin: 7px 10px 0px 0px;
 }
 
 a {

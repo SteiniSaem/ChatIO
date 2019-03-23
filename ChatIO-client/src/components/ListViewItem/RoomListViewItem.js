@@ -28,8 +28,6 @@ class RoomListViewItem extends React.Component {
 
     socket.emit("joinroom", joinObj, (valid, reason) => {
       if (valid) {
-        console.log("joined room");
-
         setCurrentRoom(roomName);
       } else {
         alert("You have been banned from this room: " + reason);
@@ -50,7 +48,6 @@ class RoomListViewItem extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-  console.log(reduxStoreState);
   return {
     currentRoom: reduxStoreState.room.currentRoom,
     rooms: reduxStoreState.room.rooms

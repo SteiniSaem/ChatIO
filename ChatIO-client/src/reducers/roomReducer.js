@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.log(action.type + " in reducer rooms");
   switch (action.type) {
     case UPDATE_ROOMS:
       return {
@@ -20,14 +19,11 @@ export default function(state = initialState, action) {
         rooms: action.payload.rooms
       };
     case SET_CURRENT_ROOM:
-      console.log("Setting current room");
       return {
         ...state,
         currentRoom: action.payload
       };
     case UPDATE_USERS:
-      console.log("Updating users in reducer");
-
       return {
         ...state,
         rooms: {
@@ -41,9 +37,6 @@ export default function(state = initialState, action) {
       };
 
     case UPDATE_CHAT:
-      console.log("Updating chat in reducer");
-      console.log(action.payload);
-
       // MAYBE ONLY HAVE CURRENT ROOM AS THE NAME OF LOBBY
       // THEN USE rooms[NAME] WHEN YOU NEED INFO
       return {
