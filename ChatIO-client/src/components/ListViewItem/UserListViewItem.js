@@ -4,9 +4,32 @@ import { connect } from "react-redux";
 class UserListViewItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      visible: false
+    };
+
+    this.MsgBtnClicked = this.MsgBtnClicked.bind(this);
+  }
+
+  MsgBtnClicked() {
+    this.setState({
+      visible: !this.state.visible
+    });
   }
 
   render() {
+    const { visible } = this.state;
+    let msgInput;
+
+    if (visible) {
+      msgInput = (
+        <div>
+          <input type="text" placeholder="Message" className="pvt-msg-input" />
+          <button>Send</button>
+        </div>
+      );
+    }
+
     const { rooms, currentRoom, nickName, myNick } = this.props;
     if (rooms[currentRoom].ops[myNick] == undefined) {
       if (rooms[currentRoom].ops[nickName] != undefined) {
@@ -16,6 +39,7 @@ class UserListViewItem extends React.Component {
               <strong>@{nickName}</strong>
             </span>
             <button className="action-btn">Message</button>
+            {msgInput}
           </li>
         );
       } else if (myNick == nickName) {
@@ -28,7 +52,10 @@ class UserListViewItem extends React.Component {
         return (
           <li className="user-list-item">
             <span>{nickName}</span>
-            <button className="action-btn">Message</button>
+            <button className="action-btn" onClick={this.MsgBtnClicked}>
+              Message
+            </button>
+            {msgInput}
           </li>
         );
       }
@@ -47,6 +74,7 @@ class UserListViewItem extends React.Component {
           <button className="action-btn">Message</button>
           <button className="action-btn">Kick</button>
           <button className="action-btn">Ban</button>
+          {msgInput}
         </li>
       );
     }
