@@ -56,7 +56,20 @@ class UserListViewItem extends React.Component {
     });
   }
 
-  banUser() {}
+  banUser() {
+    const { socket } = this.context;
+    const { nickName, currentRoom } = this.props;
+
+    const banObj = {};
+    banObj["user"] = nickName;
+    banObj["room"] = currentRoom;
+
+    socket.emit("ban", banObj, valid => {
+      if (valid) {
+        console.log("Banned " + nickName);
+      }
+    });
+  }
 
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });

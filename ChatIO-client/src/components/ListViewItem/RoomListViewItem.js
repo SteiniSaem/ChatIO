@@ -32,7 +32,7 @@ class RoomListViewItem extends React.Component {
 
         setCurrentRoom(roomName);
       } else {
-        console.log("Cannot join this chat because of " + reason);
+        alert("You have been banned from this room: " + reason);
       }
 
       document.getElementById(roomName).classList.add("selected");

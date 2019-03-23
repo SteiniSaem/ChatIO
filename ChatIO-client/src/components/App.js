@@ -10,7 +10,8 @@ import {
   updateChat,
   updateUsers,
   updateTopic,
-  updateRooms
+  updateRooms,
+  setCurrentRoom
 } from "../actions/roomActions";
 
 import { privateMsg } from "../actions/userActions";
@@ -23,7 +24,9 @@ class App extends React.Component {
       updateUsers,
       updateTopic,
       updateRooms,
-      privateMsg
+      privateMsg,
+      setCurrentRoom,
+      nickName
     } = this.props;
 
     // roomlist
@@ -87,7 +90,18 @@ class App extends React.Component {
 
     // kicked
     socket.on("kicked", (room, kickedUser, user) => {
-      console.log("you got kicked fella");
+      if (this.props.nickName == kickedUser) {
+        setCurrentRoom("");
+      }
+    });
+
+    // banned
+    socket.on("banned", (room, bannedUser, user) => {
+      if (this.props.nickName == bannedUser) {
+        setCurrentRoom("");
+
+        alert("You have been banned from this channel");
+      }
     });
   }
 
@@ -120,6 +134,13 @@ export default withRouter(
   connect(
     mapStateToProps,
 
-    { updateChat, updateUsers, updateTopic, updateRooms, privateMsg }
+    {
+      updateChat,
+      updateUsers,
+      updateTopic,
+      updateRooms,
+      privateMsg,
+      setCurrentRoom
+    }
   )(App)
 );
