@@ -69,7 +69,7 @@ class ChatWindow extends React.Component {
 
     const botMsg = [
       {
-        nick: "HeemanBot",
+        nick: "He-man Bot",
         message:
           "There aint no chatting going on in this chat! Start chatting or I will come get you",
         timestamp: "JUST NOW"
