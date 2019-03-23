@@ -1,14 +1,23 @@
-import { ADD_USER } from "../constants";
+import { ADD_USER, PRIVATE_MSG } from "../constants";
 
 const initialState = {
-  nickName: ""
+  nickName: "",
+  privateMessages: []
 };
 
 export default function(state = initialState, action) {
   console.log(action.type + " in reducer");
   switch (action.type) {
     case ADD_USER:
-      return action.payload;
+      return {
+        ...state,
+        nickName: action.payload.nickName
+      };
+    case PRIVATE_MSG:
+      return {
+        ...state,
+        privateMessages: [...state.privateMessages, action.payload]
+      };
     default:
       return state;
   }

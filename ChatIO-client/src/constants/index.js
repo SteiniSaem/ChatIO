@@ -8,3 +8,4 @@ export const UPDATE_USERS = "UPDATE_USERS";
 export const UPDATE_TOPIC = "UPDATE_TOPIC";
 export const SERVER_MESSAGE = "SERVER_MESSAGE";
 export const UPDATE_CHAT = "UPDATE_CHAT";
+export const PRIVATE_MSG = "PRIVATE_MSG";

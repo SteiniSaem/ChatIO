@@ -13,14 +13,18 @@ import {
   updateRooms
 } from "../actions/roomActions";
 
+import { privateMsg } from "../actions/userActions";
+
 class App extends React.Component {
   componentDidMount() {
-    // listen on socket?
-    // rooms
-    // users
-
     const { socket } = this.context;
-    const { updateChat, updateUsers, updateTopic, updateRooms } = this.props;
+    const {
+      updateChat,
+      updateUsers,
+      updateTopic,
+      updateRooms,
+      privateMsg
+    } = this.props;
 
     socket.on("userList", users => {
       // call action
@@ -44,11 +48,7 @@ class App extends React.Component {
       updateUsers(userObj);
     });
 
-    // updateusers
-
     // servermessage
-
-    // updateusers
 
     // updatechat
     socket.on("updatechat", (room, msghistory) => {
@@ -74,6 +74,17 @@ class App extends React.Component {
       obj["nickName"] = nickName;
 
       updateTopic(obj);
+    });
+
+    // recv private message
+    socket.on("recv_privatemsg", (nickName, message) => {
+      console.log("received" + message + " from " + nickName);
+
+      const privgMsgObj = {};
+      privgMsgObj["nickName"] = nickName;
+      privgMsgObj["message"] = message;
+
+      privateMsg(privgMsgObj);
     });
   }
 
@@ -106,6 +117,6 @@ export default withRouter(
   connect(
     mapStateToProps,
 
-    { updateChat, updateUsers, updateTopic, updateRooms }
+    { updateChat, updateUsers, updateTopic, updateRooms, privateMsg }
   )(App)
 );
