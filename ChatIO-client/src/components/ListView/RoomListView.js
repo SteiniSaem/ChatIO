@@ -60,7 +60,7 @@ class RoomListView extends React.Component {
     const { roomList } = this.props;
 
     return (
-      <div className="room-section">
+      <div>
         <h3 className="room-list-header">Rooms</h3>
         <ul className="room-list">
           {Object.keys(roomList).map(key => (

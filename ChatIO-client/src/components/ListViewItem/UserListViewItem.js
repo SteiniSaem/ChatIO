@@ -23,9 +23,9 @@ class UserListViewItem extends React.Component {
 
     if (visible) {
       msgInput = (
-        <div>
+        <div className="pvt-msg-form">
           <input type="text" placeholder="Message" className="pvt-msg-input" />
-          <button>Send</button>
+          <button className="send-pvt-msg-btn">Send</button>
         </div>
       );
     }

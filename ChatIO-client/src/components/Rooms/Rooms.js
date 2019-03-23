@@ -3,7 +3,7 @@ import RoomListView from "../ListView/RoomListView";
 
 const Rooms = ({ roomList }) => {
   return (
-    <div>
+    <div className="room-section">
       <RoomListView roomList={roomList} />
     </div>
   );
