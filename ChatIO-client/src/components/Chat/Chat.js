@@ -31,7 +31,7 @@ class Chat extends React.Component {
     if (currentRoom != "") {
       chat = <ChatWindow room={rooms[currentRoom]} roomName={currentRoom} />;
     } else {
-      chat = <h1>Select a lobby to start chatting!</h1>;
+      chat = "";
     }
 
     let all;
@@ -42,7 +42,13 @@ class Chat extends React.Component {
           <Rooms roomList={rooms} />
           {chat}
           <div className="pvt-msg">
-            <PrivateMessages messages={privateMessages} />
+            <h1>Private messages</h1>
+            {privateMessages.length != 0 && (
+              <PrivateMessages messages={privateMessages} />
+            )}
+            {privateMessages.length == 0 && (
+              <p>You don't have any private messages</p>
+            )}
           </div>
         </div>
       );

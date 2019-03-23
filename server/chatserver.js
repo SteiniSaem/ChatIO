@@ -63,8 +63,9 @@ io.on("connection", function(socket) {
       fn(true);
       io.sockets.emit("updateusers", room, rooms[room].users, rooms[room].ops);
       //Update topic
-      socket.emit("updatetopic", room, rooms[room].topic, socket.username);
+      io.sockets.emit("updatetopic", room, rooms[room].topic, socket.username);
       io.sockets.emit("servermessage", "join", room, socket.username);
+      io.sockets.emit("roomlist", rooms);
     } else {
       //If the room isn't locked we set accepted to true.
       if (rooms[room].locked === false) {
@@ -300,7 +301,6 @@ io.on("connection", function(socket) {
 
   //Returns a list of all avaliable rooms.
   socket.on("rooms", function() {
-    console.log("roomss");
     socket.emit("roomlist", rooms);
   });
 

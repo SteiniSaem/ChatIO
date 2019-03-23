@@ -26,16 +26,14 @@ class App extends React.Component {
       privateMsg
     } = this.props;
 
-    socket.on("userList", users => {
-      // call action
-    });
-
+    // roomlist
     socket.on("roomlist", rooms => {
       console.log("getting updated rooms");
       console.log(rooms);
       updateRooms({ rooms });
     });
 
+    // updateusers
     socket.on("updateusers", (room, users, ops) => {
       console.log("Updating users ");
       console.log(users);
@@ -85,6 +83,11 @@ class App extends React.Component {
       privgMsgObj["message"] = message;
 
       privateMsg(privgMsgObj);
+    });
+
+    // kicked
+    socket.on("kicked", (room, kickedUser, user) => {
+      console.log("you got kicked fella");
     });
   }
 

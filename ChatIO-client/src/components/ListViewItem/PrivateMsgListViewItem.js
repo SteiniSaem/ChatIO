@@ -1,10 +1,10 @@
 import React from "react";
 
-const PrivateMsgListViewItem = props => {
+const PrivateMsgListViewItem = ({ message }) => {
   return (
     <li className="msg">
-      <span className="msg-nick">lbgtq: </span>
-      <span>kkk</span>
+      <span className="msg-nick">{message.nickName}: </span>
+      <span>{message.message}</span>
     </li>
   );
 };

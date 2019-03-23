@@ -43,12 +43,16 @@ class ChatWindow extends React.Component {
 
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });
+
+    if (e.target.value.toLowerCase() == "i have the power") {
+      window.location = "https://www.youtube.com/watch?v=-dJolYw8tnk";
+    }
   }
 
   submitMessage() {
     const { socket } = this.context;
     const { inputMessage } = this.state;
-    const { roomName, updateChat } = this.props;
+    const { roomName } = this.props;
 
     console.log("msg is " + inputMessage);
     const data = {};

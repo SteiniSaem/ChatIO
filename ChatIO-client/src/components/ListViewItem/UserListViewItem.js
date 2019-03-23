@@ -1,19 +1,70 @@
 import React from "react";
 import { connect } from "react-redux";
+import SocketContext from "../../contexts/SocketContext";
 
 class UserListViewItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      message: "",
+      eventSet: false
     };
 
     this.MsgBtnClicked = this.MsgBtnClicked.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.sendPrivateMsg = this.sendPrivateMsg.bind(this);
+    this.kickUser = this.kickUser.bind(this);
+    this.banUser = this.banUser.bind(this);
   }
 
-  componentDidMount() {
-    if (this.state.visible) {
+  MsgBtnClicked() {
+    this.setState({
+      visible: !this.state.visible
+    });
+  }
+
+  sendPrivateMsg() {
+    const { message } = this.state;
+    const { socket } = this.context;
+    const { nickName } = this.props;
+
+    const msgObj = {};
+    msgObj["nick"] = nickName;
+    msgObj["message"] = message;
+
+    socket.emit("privatemsg", msgObj, valid => {
+      if (!valid) {
+        console.log("failed sending private message");
+      }
+    });
+
+    this.setState({ visible: !this.state.visible, eventSet: false });
+  }
+
+  kickUser() {
+    const { socket } = this.context;
+    const { nickName, currentRoom } = this.props;
+
+    const kickObj = {};
+    kickObj["user"] = nickName;
+    kickObj["room"] = currentRoom;
+
+    socket.emit("kick", kickObj, valid => {
+      if (valid) {
+        console.log("Kicked " + nickName);
+      }
+    });
+  }
+
+  banUser() {}
+
+  onInput(e) {
+    this.setState({ [e.target.name]: e.target.value });
+
+    if (!this.state.eventSet) {
       let input = document.getElementById("pvt-msg-input");
+      this.setState({ eventSet: true });
 
       input.addEventListener("keyup", event => {
         if (event.keyCode === 13) {
@@ -21,12 +72,6 @@ class UserListViewItem extends React.Component {
         }
       });
     }
-  }
-
-  MsgBtnClicked() {
-    this.setState({
-      visible: !this.state.visible
-    });
   }
 
   render() {
@@ -37,12 +82,18 @@ class UserListViewItem extends React.Component {
       msgInput = (
         <div className="pvt-msg-form">
           <input
+            onInput={e => this.onInput(e)}
+            name="message"
             type="text"
             placeholder="Message"
             id="pvt-msg-input"
             className="pvt-msg-input"
           />
-          <button id="send-pvt-msg-btn" className="send-pvt-msg-btn">
+          <button
+            className="send-pvt-msg-btn"
+            id="send-pvt-msg-btn"
+            onClick={this.sendPrivateMsg}
+          >
             Send
           </button>
         </div>
@@ -57,8 +108,11 @@ class UserListViewItem extends React.Component {
             <span className="user-list-item-nick">
               <strong>@{nickName}</strong>
             </span>
+
             <div class="action-btns">
-              <button className="action-btn">Message</button>
+              <button onClick={this.MsgBtnClicked} className="action-btn">
+                Message
+              </button>
             </div>
             {msgInput}
           </li>
@@ -96,8 +150,12 @@ class UserListViewItem extends React.Component {
           <span className="user-list-item-nick">{nickName}</span>
           <div className="action-btns">
             <button className="action-btn">Message</button>
-            <button className="action-btn">Kick</button>
-            <button className="action-btn">Ban</button>
+            <button onClick={this.kickUser} className="action-btn">
+              Kick
+            </button>
+            <button onClick={this.banUser} className="action-btn">
+              Ban
+            </button>
           </div>
           {msgInput}
         </li>
@@ -114,5 +172,7 @@ const mapStateToProps = reduxStoreState => {
     rooms: reduxStoreState.room.rooms
   };
 };
+
+UserListViewItem.contextType = SocketContext;
 
 export default connect(mapStateToProps)(UserListViewItem);

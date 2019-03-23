@@ -1,11 +1,20 @@
 import React from "react";
 
-const MsgListViewItem = props => {
+const MsgListViewItem = ({ listItem }) => {
+  let date;
+
+  if (listItem.timestamp != "JUST NOW") {
+    const d = new Date(listItem.timestamp);
+    date = d.getDate() + "." + d.getMonth() + "." + d.getFullYear();
+  } else {
+    date = listItem.timestamp;
+  }
+
   return (
     <li className="msg">
-      <div className="msg-time">{props.listItem.timestamp}:</div>
-      <span className="msg-nick">{props.listItem.nick}: </span>
-      <span>{props.listItem.message}</span>
+      <div className="msg-time">{date}:</div>
+      <span className="msg-nick">{listItem.nick}: </span>
+      <span>{listItem.message}</span>
     </li>
   );
 };
