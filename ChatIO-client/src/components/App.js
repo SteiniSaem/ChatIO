@@ -84,6 +84,11 @@ class App extends React.Component {
 
       privateMsg(privgMsgObj);
     });
+
+    // kicked
+    socket.on("kicked", (room, kickedUser, user) => {
+      console.log("you got kicked fella");
+    });
   }
 
   constructor(props) {

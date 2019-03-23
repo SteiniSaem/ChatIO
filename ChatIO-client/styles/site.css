@@ -39,6 +39,9 @@
   background-color: #b76ac4;
   color: white;
   margin: 0px 3px 0px 5px;
+}
+
+.action-btns {
   float: right;
   border-radius: 5px;
 }
@@ -58,7 +61,7 @@
 
 .chat-box {
   width: 800px;
-  height: 600px;
+  height: 500px;
   overflow-y: scroll;
 }
 
@@ -119,12 +122,13 @@
 
 .room-section {
   background-color: purple;
-  height: 100%;
+  min-width: 300px;
 }
 
 .user-section {
   background-color: purple;
   height: 100%;
+  min-width: 200px;
 }
 
 .room-list-item:hover {
@@ -143,9 +147,13 @@
 
 .room-list-item,
 .user-list-item {
-  padding: 10px;
+  padding: 15px 20px 15px 20px;
   margin-bottom: 0px;
   color: white;
+}
+
+.user-list-item-nick {
+  margin-right: 10px;
 }
 
 a {
@@ -201,9 +209,14 @@ a {
 
 .pvt-msg-form {
   margin-top: 20px;
+  width: 100%;
 }
 
 .send-pvt-msg-btn {
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
   background-color: #b76ac4;
+  padding: 3px;
   color: white;
 }
