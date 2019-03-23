@@ -66,6 +66,16 @@ class ChatWindow extends React.Component {
     const { room } = this.props;
     console.log("ROOOOMMSSSS!!!!");
     console.log(room.users);
+
+    const botMsg = [
+      {
+        nick: "HeemanBot",
+        message:
+          "There aint no chatting going on in this chat! Start chatting or I will come get you",
+        timestamp: "JUST NOW"
+      }
+    ];
+
     return (
       <div className="not-room-list">
         <div className="chat-text">
@@ -75,7 +85,12 @@ class ChatWindow extends React.Component {
             </div>
             <div className="chat-box-parent">
               <div className="chat-box">
-                <Messages messages={room.messageHistory} />
+                {room.messageHistory.length != 0 && (
+                  <Messages messages={room.messageHistory} />
+                )}
+                {room.messageHistory.length == 0 && (
+                  <Messages messages={botMsg} />
+                )}
               </div>
             </div>
           </div>
