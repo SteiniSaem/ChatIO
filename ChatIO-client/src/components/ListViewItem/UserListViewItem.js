@@ -35,26 +35,30 @@ class UserListViewItem extends React.Component {
       if (rooms[currentRoom].ops[nickName] != undefined) {
         return (
           <li className="user-list-item">
-            <span>
+            <span className="user-list-item-nick">
               <strong>@{nickName}</strong>
             </span>
-            <button className="action-btn">Message</button>
+            <div class="action-btns">
+              <button className="action-btn">Message</button>
+            </div>
             {msgInput}
           </li>
         );
       } else if (myNick == nickName) {
         return (
           <li className="user-list-item">
-            <span>{nickName}</span>
+            <span className="user-list-item-nick">{nickName}</span>
           </li>
         );
       } else {
         return (
           <li className="user-list-item">
-            <span>{nickName}</span>
-            <button className="action-btn" onClick={this.MsgBtnClicked}>
-              Message
-            </button>
+            <span className="user-list-item-nick">{nickName}</span>
+            <div className="action-btns">
+              <button className="action-btn" onClick={this.MsgBtnClicked}>
+                Message
+              </button>
+            </div>
             {msgInput}
           </li>
         );
@@ -70,10 +74,12 @@ class UserListViewItem extends React.Component {
     } else {
       return (
         <li className="user-list-item">
-          <span>{nickName}</span>
-          <button className="action-btn">Message</button>
-          <button className="action-btn">Kick</button>
-          <button className="action-btn">Ban</button>
+          <span className="user-list-item-nick">{nickName}</span>
+          <div className="action-btns">
+            <button className="action-btn">Message</button>
+            <button className="action-btn">Kick</button>
+            <button className="action-btn">Ban</button>
+          </div>
           {msgInput}
         </li>
       );

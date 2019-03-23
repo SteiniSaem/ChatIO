@@ -39,6 +39,9 @@
   background-color: #b76ac4;
   color: white;
   margin: 0px 3px 0px 5px;
+}
+
+.action-btns {
   float: right;
 }
 
@@ -119,10 +122,12 @@
 .room-section,
 .user-section {
   background-color: purple;
+  min-width: 300px;
 }
 
 .user-section {
   height: 100%;
+  min-width: 200px;
 }
 
 .room-list-item:hover {
@@ -141,9 +146,13 @@
 
 .room-list-item,
 .user-list-item {
-  padding: 10px;
+  padding: 15px 20px 15px 20px;
   margin-bottom: 0px;
   color: white;
+}
+
+.user-list-item-nick {
+  margin-right: 10px;
 }
 
 a {
@@ -195,6 +204,7 @@ a {
 
 .pvt-msg-form {
   margin-top: 20px;
+  width: 100%;
 }
 
 .send-pvt-msg-btn {
