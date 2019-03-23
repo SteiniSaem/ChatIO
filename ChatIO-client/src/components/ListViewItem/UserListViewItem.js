@@ -7,7 +7,8 @@ class UserListViewItem extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      message: ""
+      message: "",
+      eventSet: false
     };
 
     this.MsgBtnClicked = this.MsgBtnClicked.bind(this);
@@ -38,7 +39,7 @@ class UserListViewItem extends React.Component {
       }
     });
 
-    this.setState({ visible: !this.state.visible });
+    this.setState({ visible: !this.state.visible, eventSet: false });
   }
 
   kickUser() {
@@ -73,6 +74,17 @@ class UserListViewItem extends React.Component {
 
   onInput(e) {
     this.setState({ [e.target.name]: e.target.value });
+
+    if (!this.state.eventSet) {
+      let input = document.getElementById("pvt-msg-input");
+      this.setState({ eventSet: true });
+
+      input.addEventListener("keyup", event => {
+        if (event.keyCode === 13) {
+          document.getElementById("send-pvt-msg-btn").click();
+        }
+      });
+    }
   }
 
   render() {
@@ -81,15 +93,20 @@ class UserListViewItem extends React.Component {
 
     if (visible) {
       msgInput = (
-        <div>
+        <div className="pvt-msg-form">
           <input
             onInput={e => this.onInput(e)}
             name="message"
             type="text"
             placeholder="Message"
+            id="pvt-msg-input"
             className="pvt-msg-input"
           />
-          <button className="send-pvt-msg-btn" onClick={this.sendPrivateMsg}>
+          <button
+            className="send-pvt-msg-btn"
+            id="send-pvt-msg-btn"
+            onClick={this.sendPrivateMsg}
+          >
             Send
           </button>
         </div>
@@ -152,6 +169,7 @@ class UserListViewItem extends React.Component {
             <button onClick={this.banUser} className="action-btn">
               Ban
             </button>
+            <button className="action-btn">Make op</button>
           </div>
           {msgInput}
         </li>
