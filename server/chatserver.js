@@ -14,7 +14,11 @@ var users = {};
 
 //Default room.
 rooms.lobby = new Room();
+rooms.test = new Room();
+rooms.SiggiBk = new Room();
 rooms.lobby.setTopic("Welcome to the lobby!");
+rooms.test.setTopic("Did Hitler do anything wrong?");
+rooms.SiggiBk.setTopic("Nutz");
 
 rooms.test = new Room();
 rooms.test.setTopic("Bændasamfélagið");
@@ -53,6 +57,7 @@ io.on("connection", function(socket) {
     //If the room does not exist
     if (rooms[room] === undefined) {
       rooms[room] = new Room();
+      rooms[room]["messageHistory"] = [];
       //Op the user if he creates the room.
       rooms[room].ops[socket.username] = socket.username;
       //If the user wants to password protect the room we set the password.
