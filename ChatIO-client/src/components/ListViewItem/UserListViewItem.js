@@ -7,12 +7,37 @@ class UserListViewItem extends React.Component {
   }
 
   render() {
-    const { rooms, currentRoom, nickName } = this.props;
-    if (rooms[currentRoom].ops[nickName] == undefined) {
+    const { rooms, currentRoom, nickName, myNick } = this.props;
+    if (rooms[currentRoom].ops[myNick] == undefined) {
+      if (rooms[currentRoom].ops[nickName] != undefined) {
+        return (
+          <li className="user-list-item">
+            <span>
+              <strong>@{nickName}</strong>
+            </span>
+            <button className="action-btn">Message</button>
+          </li>
+        );
+      } else if (myNick == nickName) {
+        return (
+          <li className="user-list-item">
+            <span>{nickName}</span>
+          </li>
+        );
+      } else {
+        return (
+          <li className="user-list-item">
+            <span>{nickName}</span>
+            <button className="action-btn">Message</button>
+          </li>
+        );
+      }
+    } else if (myNick == nickName) {
       return (
         <li className="user-list-item">
-          <span>{nickName}</span>
-          <button className="action-btn">Message</button>
+          <span>
+            <strong>@{nickName}</strong>
+          </span>
         </li>
       );
     } else {
@@ -31,7 +56,7 @@ class UserListViewItem extends React.Component {
 const mapStateToProps = reduxStoreState => {
   console.log(reduxStoreState);
   return {
-    nickName: reduxStoreState.user.nickName,
+    myNick: reduxStoreState.user.nickName,
     currentRoom: reduxStoreState.room.currentRoom,
     rooms: reduxStoreState.room.rooms
   };
