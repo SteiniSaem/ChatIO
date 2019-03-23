@@ -1,20 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
+import SocketContext from "../../contexts/SocketContext";
 
 class UserListViewItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      message: ""
     };
 
     this.MsgBtnClicked = this.MsgBtnClicked.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.sendPrivateMsg = this.sendPrivateMsg.bind(this);
   }
 
   MsgBtnClicked() {
     this.setState({
       visible: !this.state.visible
     });
+  }
+
+  sendPrivateMsg() {
+    const { message } = this.state;
+    const { socket } = this.context;
+    const { nickName } = this.props;
+
+    const msgObj = {};
+    msgObj["nick"] = nickName;
+    msgObj["message"] = message;
+
+    socket.emit("privatemsg", msgObj, valid => {
+      if (!valid) {
+        console.log("failed sending private message");
+      }
+    });
+  }
+
+  onInput(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -24,8 +48,14 @@ class UserListViewItem extends React.Component {
     if (visible) {
       msgInput = (
         <div>
-          <input type="text" placeholder="Message" className="pvt-msg-input" />
-          <button>Send</button>
+          <input
+            onInput={e => this.onInput(e)}
+            name="message"
+            type="text"
+            placeholder="Message"
+            className="pvt-msg-input"
+          />
+          <button onClick={this.sendPrivateMsg}>Send</button>
         </div>
       );
     }
@@ -89,5 +119,7 @@ const mapStateToProps = reduxStoreState => {
     rooms: reduxStoreState.room.rooms
   };
 };
+
+UserListViewItem.contextType = SocketContext;
 
 export default connect(mapStateToProps)(UserListViewItem);
