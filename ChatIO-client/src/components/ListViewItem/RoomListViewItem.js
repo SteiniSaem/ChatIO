@@ -14,12 +14,16 @@ class RoomListViewItem extends React.Component {
   }
 
   handleClick() {
-    const { setCurrentRoom, roomName } = this.props;
+    const { setCurrentRoom, roomName, rooms, currentRoom } = this.props;
     const { socket } = this.context;
 
     // emit joinroom
     const joinObj = {};
     joinObj.room = roomName;
+
+    if (currentRoom != "") {
+      socket.emit("partroom", currentRoom);
+    }
 
     socket.emit("joinroom", joinObj, (valid, reason) => {
       if (valid) {
@@ -44,7 +48,10 @@ class RoomListViewItem extends React.Component {
 
 const mapStateToProps = reduxStoreState => {
   console.log(reduxStoreState);
-  return {};
+  return {
+    currentRoom: reduxStoreState.room.currentRoom,
+    rooms: reduxStoreState.room.rooms
+  };
 };
 
 RoomListViewItem.contextType = SocketContext;

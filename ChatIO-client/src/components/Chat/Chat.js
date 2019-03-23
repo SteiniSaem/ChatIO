@@ -30,7 +30,7 @@ class Chat extends React.Component {
     if (currentRoom != "") {
       chat = <ChatWindow room={rooms[currentRoom]} roomName={currentRoom} />;
     } else {
-      chat = <h1>No lobby selected</h1>;
+      chat = <h1>Select a lobby to start chatting!</h1>;
     }
 
     let all;

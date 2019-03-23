@@ -84,7 +84,10 @@ class RoomListView extends React.Component {
             onInput={e => this.onInput(e)}
           />
           <br />
-          <button onClick={this.submitRoom} className="sign-in-btn">
+          <button
+            onClick={this.submitRoom}
+            className="sign-in-btn create-room-btn"
+          >
             Create room
           </button>
         </div>
