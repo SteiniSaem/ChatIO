@@ -156,6 +156,7 @@ class UserListViewItem extends React.Component {
             <button onClick={this.banUser} className="action-btn">
               Ban
             </button>
+            <button className="action-btn">Make op</button>
           </div>
           {msgInput}
         </li>
