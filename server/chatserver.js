@@ -13,15 +13,8 @@ var rooms = {};
 var users = {};
 
 //Default room.
-rooms.lobby = new Room();
-rooms.test = new Room();
-rooms.SiggiBk = new Room();
-rooms.lobby.setTopic("Welcome to the lobby!");
-rooms.test.setTopic("Did Hitler do anything wrong?");
-rooms.SiggiBk.setTopic("Nutz");
-
-rooms.test = new Room();
-rooms.test.setTopic("Bændasamfélagið");
+rooms["He-man discussions"] = new Room();
+rooms["He-man discussions"].topic = "Here you discuss He-man";
 
 io.on("connection", function(socket) {
   console.log("user connected");
