@@ -31,6 +31,15 @@
   color: white;
 }
 
+.action-btn {
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+  background-color: #b76ac4;
+  color: white;
+  margin: 0px 3px 0px 5px;
+}
+
 .navbar-nick {
   font-size: 20px;
   color: purple;
@@ -106,8 +115,7 @@
   height: 500px;
 }
 
-.room-list-item:hover,
-.user-list-item:hover {
+.room-list-item:hover {
   background-color: #b76ac4;
   color: white;
   cursor: pointer;
