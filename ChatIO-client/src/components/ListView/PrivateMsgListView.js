@@ -5,7 +5,7 @@ const PrivateMsgListView = ({ messages }) => {
   return (
     <ul className="pvt-msg-list">
       {messages.map((item, index) => (
-        <PrivateMsgListViewItem key={index} listItem={item} />
+        <PrivateMsgListViewItem key={index} message={item} />
       ))}
     </ul>
   );

@@ -68,8 +68,9 @@ class UserListViewItem extends React.Component {
             <span>
               <strong>@{nickName}</strong>
             </span>
-            <button className="action-btn">Message</button>
-            {msgInput}
+            <button className="action-btn" onClick={this.MsgBtnClicked}>
+              Message
+            </button>
           </li>
         );
       } else if (myNick == nickName) {
@@ -101,7 +102,9 @@ class UserListViewItem extends React.Component {
       return (
         <li className="user-list-item">
           <span>{nickName}</span>
-          <button className="action-btn">Message</button>
+          <button className="action-btn" onClick={this.MsgBtnClicked}>
+            Message
+          </button>
           <button className="action-btn">Kick</button>
           <button className="action-btn">Ban</button>
           {msgInput}
