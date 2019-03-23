@@ -16,6 +16,7 @@ class UserListViewItem extends React.Component {
     this.sendPrivateMsg = this.sendPrivateMsg.bind(this);
     this.kickUser = this.kickUser.bind(this);
     this.banUser = this.banUser.bind(this);
+    this.makeOp = this.makeOp.bind(this);
   }
 
   MsgBtnClicked() {
@@ -68,6 +69,21 @@ class UserListViewItem extends React.Component {
     socket.emit("ban", banObj, valid => {
       if (valid) {
         console.log("Banned " + nickName);
+      }
+    });
+  }
+
+  makeOp() {
+    const { socket } = this.context;
+    const { nickName, currentRoom } = this.props;
+
+    const opObj = {};
+    opObj["user"] = nickName;
+    opObj["room"] = currentRoom;
+
+    socket.emit("op", opObj, valid => {
+      if (valid) {
+        console.log("Opped " + nickName);
       }
     });
   }
@@ -157,19 +173,31 @@ class UserListViewItem extends React.Component {
           </span>
         </li>
       );
+    } else if (rooms[currentRoom].ops[nickName] != undefined) {
+      return (
+        <li className="user-list-item">
+          <span>
+            <strong>@{nickName}</strong>
+          </span>
+        </li>
+      );
     } else {
       return (
         <li className="user-list-item">
           <span className="user-list-item-nick">{nickName}</span>
           <div className="action-btns">
-            <button className="action-btn">Message</button>
+            <button onClick={this.MsgBtnClicked} className="action-btn">
+              Message
+            </button>
             <button onClick={this.kickUser} className="action-btn">
               Kick
             </button>
             <button onClick={this.banUser} className="action-btn">
               Ban
             </button>
-            <button className="action-btn">Make op</button>
+            <button onClick={this.makeOp} className="action-btn">
+              Make op
+            </button>
           </div>
           {msgInput}
         </li>
